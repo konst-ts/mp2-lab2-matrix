@@ -11,7 +11,7 @@
 
 using namespace std;
 
-const int MAX_VECTOR_SIZE = 555555555555550;
+const int MAX_VECTOR_SIZE = 100000000;
 const int MAX_MATRIX_SIZE = 10000;
 
 // Динамический вектор - 
