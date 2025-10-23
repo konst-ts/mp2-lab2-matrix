@@ -217,39 +217,100 @@ public:
   }
 
   using TDynamicVector<TDynamicVector<T>>::operator[];
-
+  
   // сравнение
   bool operator==(const TDynamicMatrix& m) const noexcept
   {
+      if (sz == v.sz) {
+          for (int i = 0; i < sz; i++) {
+              if (pMem[i] != v.pMem[i]) { return 0; }
+          }
+          return 1;
+      }
+      return 0;
   }
 
   // матрично-скалярные операции
   TDynamicMatrix operator*(const T& val)
   {
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              pMem[i][j] *= val;
+          }
+      }
   }
 
   // матрично-векторные операции
   TDynamicVector<T> operator*(const TDynamicVector<T>& v)
   {
+      TDynamicVector<T> x(sz);
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              x.pMem[i] += pMem[i][j] * v.pMem[j];
+          }
+      }
+      return x;
   }
 
   // матрично-матричные операции
   TDynamicMatrix operator+(const TDynamicMatrix& m)
   {
+      TDynamicMatrix x(sz);
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              x.pMem[i][j] = pMem[i][j] + m.pMem[i][j];
+          }
+      }
+      return x;
   }
   TDynamicMatrix operator-(const TDynamicMatrix& m)
   {
+      TDynamicMatrix x(sz);
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              x.pMem[i][j] = pMem[i][j] - m.pMem[i][j];
+          }
+      }
+      return x;
   }
   TDynamicMatrix operator*(const TDynamicMatrix& m)
   {
+      TDynamicVector<T> x(sz);
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              for (int k = 0; k < sz; k++) {
+                  x.pMem[i][j] = pMem[i][k] * v.pMem[k][j];
+              }
+          }
+      }
+      return x;
   }
 
   // ввод/вывод
   friend istream& operator>>(istream& istr, TDynamicMatrix& v)
   {
+      istr << sz;
+      std::istr.ignore();
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              istr << pMem[i][j];
+              std::istr.ignore();
+          }
+          std::istr.ignore();
+      }
+      return istr;
   }
   friend ostream& operator<<(ostream& ostr, const TDynamicMatrix& v)
   {
+      istr << sz;
+      istr << "\n";
+      for (int i = 0; i < sz; i++) {
+          for (int j = 0; j < sz; j++) {
+              istr << pMem[i][j] << " ";
+          }
+          istr << "\n";
+      }
+      return istr;
   }
 };
 
