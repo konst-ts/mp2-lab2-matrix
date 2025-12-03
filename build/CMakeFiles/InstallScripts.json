@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/\u041a\u043e\u0441\u0442\u044f/mp2-lab2-matrix/build/cmake_install.cmake",
+		"C:/Users/\u041a\u043e\u0441\u0442\u044f/mp2-lab2-matrix/build/include/cmake_install.cmake",
+		"C:/Users/\u041a\u043e\u0441\u0442\u044f/mp2-lab2-matrix/build/samples/cmake_install.cmake",
+		"C:/Users/\u041a\u043e\u0441\u0442\u044f/mp2-lab2-matrix/build/gtest/cmake_install.cmake",
+		"C:/Users/\u041a\u043e\u0441\u0442\u044f/mp2-lab2-matrix/build/test/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
