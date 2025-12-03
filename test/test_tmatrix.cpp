@@ -187,3 +187,26 @@ TEST(TDynamicMatrix, cant_subtract_matrixes_with_not_equal_size)
 	ASSERT_ANY_THROW(v = z - v);
 }
 
+TEST(TDynamicMatrix, can_multiply_vectors_with_equal_size)
+{
+	TDynamicMatrix<int> v(2);
+	v[0][0] = 0; v[0][1] = 1;
+	v[1][0] = 2; v[1][1] = 3;
+	TDynamicMatrix<int> z(2);
+	z[0][0] = 4; z[0][1] = -1;
+	z[1][0] = 3; z[1][1] = 7;
+	v = v * z;
+	EXPECT_EQ(v[0][0], 3);
+	EXPECT_EQ(v[0][1], 7);
+	EXPECT_EQ(v[1][0], 17);
+}
+
+TEST(TDynamicMatrix, cant_multiply_vectors_with_not_equal_size)
+{
+	TDynamicMatrix<int> v(2);
+	v[0][0] = 0; v[0][1] = 1;
+	v[1][0] = 2; v[1][1] = 3;
+	TDynamicMatrix<int> z(1);
+	z[0][0] = 1;
+	ASSERT_ANY_THROW(v = v * z);
+}

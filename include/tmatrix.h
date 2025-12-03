@@ -130,8 +130,6 @@ public:
           return 0;
       }
       return 1;
-      //if (this == v) { return 0; }
-      //else { return 1; }
   }
 
   // скалярные операции
@@ -251,13 +249,7 @@ public:
   }
   bool operator!=(const TDynamicMatrix& v) const noexcept
   {
-      if (sz == v.sz) {
-          for (int i = 0; i < sz; i++) {
-              if (pMem[i] != v.pMem[i]) { return 1; }
-          }
-          return 0;
-      }
-      return 1;
+      return !(sz == v.sz);
   }
 
   // матрично-скалярные операции
@@ -308,11 +300,11 @@ public:
   TDynamicMatrix operator*(const TDynamicMatrix& m)
   {
       if (sz != m.sz)throw out_of_range("Matrix_with_not_equal_size");
-      TDynamicVector<T> x(sz);
+      TDynamicMatrix<T> x(sz);
       for (int i = 0; i < sz; i++) {
           for (int j = 0; j < sz; j++) {
               for (int k = 0; k < sz; k++) {
-                  x.pMem[i][j] = pMem[i][k] * v.pMem[k][j];
+                  x.pMem[i][j] += pMem[i][k] * m.pMem[k][j];
               }
           }
       }

@@ -221,6 +221,6 @@ TEST(TDynamicVector, cant_multiply_vectors_with_not_equal_size)
 	v[0] = 0; v[1] = 1; v[2] = 2;
 	TDynamicVector<int> z(2);
 	z[0] = 3; z[1] = 4;
-	ASSERT_ANY_THROW(v = v - z);
+	ASSERT_ANY_THROW(v = v * z);
 }
 
