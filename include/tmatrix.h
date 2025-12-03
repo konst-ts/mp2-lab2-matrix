@@ -56,7 +56,6 @@ public:
   }
   ~TDynamicVector()
   {
-      sz = 0;
       delete[] pMem;
   }
   TDynamicVector& operator=(const TDynamicVector& v)
